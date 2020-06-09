@@ -1,9 +1,28 @@
 const express = require ('express');
+const hbs = require('express-handlebars');
+
 const app = express();
 
+const getJoke = require('./lib/joke');
+
+app.engine('hbs', hbs({
+    extname: '.hbs'
+}));
+app.set('view engine', '.hbs')
+
+app.get('/', async (req,res) => {
+    let data = await getJoke();
+    let joke = data.joke;
+    res.render('index', {joke});
+});
+
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
-})
+    res.render('index');
+});
+
+app.get('/about', (req, res) => {
+    res.render('about');
+});
 
 app.listen(3000, () => {
     console.log("Listening to port 3000");
