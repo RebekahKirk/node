@@ -11,4 +11,3 @@ Install nodemon so that any changes are applied automatically without having to 
 $ npm install -g nodemon 
 Update package.json with the following under scripts "start": "nodemon index.js"
 $ nodemon [your-app-name]
-

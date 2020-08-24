@@ -1,9 +1,12 @@
 const express = require ('express');
 const hbs = require('express-handlebars');
+const path = require('path');
 
 const app = express();
 
 const getJoke = require('./lib/joke');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.engine('hbs', hbs({
     extname: '.hbs'
